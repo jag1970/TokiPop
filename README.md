@@ -1,2 +1,2 @@
 # TokiPop
-A website the offers Japanese merchandise, toys, snacks and other collectible items.
+A website that offers Japanese merchandise, toys, snacks and other collectible items.
