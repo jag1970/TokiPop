@@ -201,6 +201,7 @@ padding: 1.2rem 0;
 .feature-strip .item {
 display: flex;
 align-items: center;
+justify-content: center;
 gap: .6rem;
 color: rgba(255,255,255,.75);
 font-size: .82rem;
@@ -208,6 +209,23 @@ letter-spacing: .06em;
 text-transform: uppercase;
 }
 .feature-strip .item i { color: var(--gold); font-size: 1.1rem; }
+.feature-strip .row {
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+.feature-strip .row > [class*="col"] {
+display: flex;
+justify-content: center;
+}
+@media (min-width: 768px) {
+.feature-strip .row {
+justify-content: space-between;
+text-align: left;
+}
+.feature-strip .row > [class*="col"] { justify-content: flex-start; }
+.feature-strip .item { justify-content: flex-start; }
+}
 
 /* ── SECTION TITLES ─────────────────────────────────── */
 .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); }
@@ -348,7 +366,6 @@ color: rgba(255,255,255,.3);
 /* ── RESPONSIVE TWEAKS ──────────────────────────────── */
 @media (max-width: 767px) {
 .carousel-inner { height: 420px; }
-.feature-strip .col { flex: 0 0 50%; }
 }
 </style>
 
@@ -408,25 +425,25 @@ FEATURE STRIP
 
 <div class="feature-strip">
 <div class="container">
-<div class="row justify-content-center g-3 text-center text-md-start">
-<div class="col-6 col-md-3">
-<div class="item justify-content-center justify-content-md-start">
-<i class="bi bi-truck"></i> Free Worldwide Shipping
+<div class="row row-cols-2 row-cols-md-4 g-3">
+<div class="col">
+<div class="item">
+<i class="bi bi-cash-coin"></i> 10% off orders over $149
 </div>
 </div>
-<div class="col-6 col-md-3">
-<div class="item justify-content-center justify-content-md-start">
-<i class="bi bi-shield-check"></i> 2-Year Warranty
+<div class="col">
+<div class="item">
+<i class="bi bi-shield-check"></i> Sastifaction Guarenteed
 </div>
 </div>
-<div class="col-6 col-md-3">
-<div class="item justify-content-center justify-content-md-start">
-<i class="bi bi-arrow-counterclockwise"></i> 60-Day Returns
+<div class="col">
+<div class="item">
+<i class="bi bi-arrow-counterclockwise"></i> 30-Day Returns
 </div>
 </div>
-<div class="col-6 col-md-3">
-<div class="item justify-content-center justify-content-md-start">
-<i class="bi bi-leaf"></i> Sustainably Sourced
+<div class="col">
+<div class="item">
+<i class="bi bi-leaf"></i> 
 </div>
 </div>
 </div>
@@ -469,7 +486,7 @@ FOOTER
 <!-- Brand column -->
 <div class="col-12 col-md-4">
 <div class="brand">Toki<span>.</span>Pop</div>
-<p class="tagline">We believe that everyday objects deserve the same careful consideration as fine art. Each piece we carry is an argument for a slower, more deliberate way of living.</p>
+<p class="tagline">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi natus cum incidunt dignissimos iusto sapiente. Sunt eius iste aliquam totam.</p>
 <div class="footer-social d-flex gap-2 mt-3">
 <a href="#"><i class="bi bi-instagram"></i></a>
 <a href="#"><i class="bi bi-twitter-x"></i></a>
@@ -489,15 +506,15 @@ FOOTER
 <li><a href="#">Sale</a></li>
 </ul>
 </div>
-
+    
 <div class="col-6 col-md-2">
 <h6>Company</h6>
 <ul>
 <li><a href="#">Our Story</a></li>
-<li><a href="#">Journal</a></li>
-<li><a href="#">Sustainability</a></li>
-<li><a href="#">Careers</a></li>
-<li><a href="#">Press</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Shipping Policy</a></li>
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Contact Us</a></li>
 </ul>
 </div>
 
