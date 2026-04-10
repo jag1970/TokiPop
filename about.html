@@ -94,6 +94,107 @@ transition: background .2s;
 }
 .nav-cta:hover { background: var(--blackberry) !important; }
 
+/* Collections hamburger submenu */
+.shop-nav-item { position: relative; }
+.shop-nav-trigger {
+display: flex;
+align-items: center;
+flex-wrap: nowrap;
+}
+.shop-nav-trigger .nav-link { padding-right: 0.35rem !important; }
+.shop-hamburger {
+width: 2.5rem;
+height: 2.5rem;
+padding: 0;
+border: none;
+background: transparent;
+border-radius: 2px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: background .2s;
+}
+.shop-hamburger:hover { background: rgba(15,14,13,.06); }
+.shop-hamburger:focus-visible {
+outline: 2px solid var(--rust);
+outline-offset: 2px;
+}
+.hamburger-box {
+width: 22px;
+height: 14px;
+display: inline-block;
+position: relative;
+}
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+width: 22px;
+height: 2px;
+background-color: var(--ink);
+border-radius: 1px;
+position: absolute;
+left: 0;
+transition: transform .25s ease, opacity .2s ease, background .2s ease;
+}
+.hamburger-inner { top: 50%; margin-top: -1px; }
+.hamburger-inner::before,
+.hamburger-inner::after { content: ''; }
+.hamburger-inner::before { top: -7px; }
+.hamburger-inner::after { top: 7px; }
+.shop-hamburger[aria-expanded="true"] .hamburger-inner {
+background: transparent;
+}
+.shop-hamburger[aria-expanded="true"] .hamburger-inner::before {
+transform: translateY(7px) rotate(45deg);
+}
+.shop-hamburger[aria-expanded="true"] .hamburger-inner::after {
+transform: translateY(-7px) rotate(-45deg);
+}
+.shop-nav-panel {
+margin-top: 0.25rem;
+min-width: 220px;
+background: var(--cream);
+border: 1px solid var(--mist);
+border-radius: 2px;
+box-shadow: 0 12px 40px rgba(15,14,13,.12);
+padding: 0.35rem 0;
+z-index: 1050;
+}
+.shop-nav-link {
+display: block;
+padding: 0.65rem 1.15rem;
+color: var(--ink);
+text-decoration: none;
+font-size: 0.82rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+font-weight: 500;
+transition: background .2s, color .2s;
+}
+.shop-nav-link:hover {
+background: var(--mist);
+color: var(--rust) !important;
+}
+@media (min-width: 992px) {
+.shop-nav-trigger .nav-link { padding-right: 0.9rem !important; }
+.shop-hamburger { display: none !important; }
+.shop-nav-panel {
+position: absolute;
+left: 0;
+top: 100%;
+margin-top: 0;
+padding-top: 0.35rem;
+}
+}
+@media (max-width: 991.98px) {
+.shop-nav-panel {
+margin-left: 0.25rem;
+border-left: 3px solid var(--gold);
+box-shadow: none;
+}
+}
+
 /* ── CAROUSEL ───────────────────────────────────────── */
 #heroCarousel {
 position: relative;
@@ -399,10 +500,25 @@ data-bs-toggle="collapse" data-bs-target="#navMenu" aria-expanded="false">
 <div class="collapse navbar-collapse" id="navMenu">
 <ul class="navbar-nav mx-auto gap-1">
 <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Collections</a></li>
+<li class="nav-item shop-nav-item">
+<div class="shop-nav-trigger">
+<a class="nav-link" href="product.html">Collections</a>
+<button class="shop-hamburger" type="button" data-bs-toggle="collapse" data-bs-target="#shopNavMenu"
+aria-controls="shopNavMenu" aria-expanded="false" aria-label="Toggle collections menu">
+<span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
+</button>
+</div>
+<div class="collapse shop-nav-panel" id="shopNavMenu">
+<a class="shop-nav-link" href="#">New Arrivals</a>
+<a class="shop-nav-link" href="product.html">All products</a>
+<a class="shop-nav-link" href="#">Limited Editions</a>
+<a class="shop-nav-link" href="#">Gift Cards</a>
+<a class="shop-nav-link" href="#">Sale</a>
+</div>
+</li>
 <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 <li class="nav-item"><a class="nav-link" href="#">Journal</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 </ul>
 <div class="d-flex align-items-center gap-3">
 <a href="#" class="nav-link"><i class="bi bi-search" style="font-size:1rem;"></i></a>
@@ -559,6 +675,54 @@ const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
 nav.classList.toggle('scrolled', window.scrollY > 40);
 });
+
+const shopMenuEl = document.getElementById('shopNavMenu');
+const navMenuEl = document.getElementById('navMenu');
+const shopNavWrap = document.querySelector('.shop-nav-item');
+const shopHamburger = shopNavWrap ? shopNavWrap.querySelector('.shop-hamburger') : null;
+const mqCollectionsDesktop = window.matchMedia('(min-width: 992px)');
+function collectionsMenuIsDesktop() {
+return mqCollectionsDesktop.matches;
+}
+function openCollectionsMenu() {
+if (!collectionsMenuIsDesktop() || !shopMenuEl || !shopHamburger) return;
+const inst = bootstrap.Collapse.getOrCreateInstance(shopMenuEl, { toggle: false });
+inst.show();
+shopHamburger.setAttribute('aria-expanded', 'true');
+}
+function closeCollectionsMenu() {
+if (!collectionsMenuIsDesktop() || !shopMenuEl || !shopHamburger) return;
+const inst = bootstrap.Collapse.getInstance(shopMenuEl);
+if (inst) inst.hide();
+shopHamburger.setAttribute('aria-expanded', 'false');
+}
+if (navMenuEl && shopMenuEl) {
+navMenuEl.addEventListener('hidden.bs.collapse', () => {
+const inst = bootstrap.Collapse.getInstance(shopMenuEl);
+if (inst && shopMenuEl.classList.contains('show')) inst.hide();
+});
+}
+if (shopNavWrap && shopMenuEl && shopHamburger) {
+shopNavWrap.addEventListener('mouseenter', openCollectionsMenu);
+shopNavWrap.addEventListener('mouseleave', closeCollectionsMenu);
+shopNavWrap.addEventListener('focusin', openCollectionsMenu);
+shopNavWrap.addEventListener('focusout', (e) => {
+if (!shopNavWrap.contains(e.relatedTarget)) closeCollectionsMenu();
+});
+mqCollectionsDesktop.addEventListener('change', () => {
+const inst = bootstrap.Collapse.getInstance(shopMenuEl);
+if (inst) inst.hide();
+shopHamburger.setAttribute('aria-expanded', 'false');
+});
+document.addEventListener('click', (e) => {
+if (collectionsMenuIsDesktop()) return;
+if (!shopMenuEl.classList.contains('show')) return;
+if (!shopNavWrap.contains(e.target)) {
+const inst = bootstrap.Collapse.getInstance(shopMenuEl);
+if (inst) inst.hide();
+}
+});
+}
 </script>
 
 </body>

@@ -468,6 +468,42 @@ color: rgba(255,255,255,.3);
 @media (max-width: 767px) {
 .carousel-inner { height: 420px; }
 }
+
+/* ── CONTACT FORM ───────────────────────────────────── */
+.contact-form-card {
+border: 1px solid var(--mist);
+border-radius: 4px;
+background: #fff;
+box-shadow: 0 12px 40px rgba(0,0,0,.06);
+}
+.contact-form-card .form-label {
+font-size: .78rem;
+letter-spacing: .08em;
+text-transform: uppercase;
+font-weight: 500;
+color: var(--ink);
+margin-bottom: .45rem;
+}
+.contact-form-card .form-control,
+.contact-form-card .form-select {
+border-radius: 2px;
+border-color: var(--mist);
+font-size: .95rem;
+padding: .65rem .85rem;
+}
+.contact-form-card .form-control:focus,
+.contact-form-card .form-select:focus {
+border-color: var(--rust);
+box-shadow: 0 0 0 .2rem rgba(184, 74, 46, .12);
+}
+.contact-form-card textarea.form-control { min-height: 160px; resize: vertical; }
+#contactFormSuccess.alert {
+border-radius: 2px;
+border: none;
+background: rgba(200, 169, 110, .2);
+color: var(--ink);
+font-size: .9rem;
+}
 </style>
 
 </head>
@@ -489,7 +525,7 @@ NAVBAR
 
 <nav class="navbar navbar-expand-lg" id="mainNav">
 <div class="container-fluid px-4">
-<a class="navbar-brand" href="#">Toki<span>.</span>Pop</a>
+<a class="navbar-brand" href="index.html">Toki<span>.</span>Pop</a>
 
 
 <button class="navbar-toggler border-0 shadow-none" type="button"
@@ -516,9 +552,9 @@ aria-controls="shopNavMenu" aria-expanded="false" aria-label="Toggle collections
 <a class="shop-nav-link" href="#">Sale</a>
 </div>
 </li>
-<li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-<li class="nav-item"><a class="nav-link" href="#">New Arrivals</a></li>
-<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Journal</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 </ul>
 <div class="d-flex align-items-center gap-3">
 <a href="#" class="nav-link"><i class="bi bi-search" style="font-size:1rem;"></i></a>
@@ -533,80 +569,7 @@ aria-controls="shopNavMenu" aria-expanded="false" aria-label="Toggle collections
 
 </nav>
 
-<!-- ════════════════════════════════════════
-CAROUSEL
-════════════════════════════════════════ -->
 
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-
-<div class="carousel-indicators">
-<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-</div>
-
-<div class="carousel-inner">
-
-<!-- Slide 1 -->
-<div class="carousel-item active">
-<div class="carousel-slide slide-1">
-<div class="slide-texture"></div>
-<div class="carousel-caption-custom">
-<span class="eyebrow">New Arrivals — Summer 2026</span>
-<h2>All your favorite manga collectibles!</h2>
-<p></p>
-<div class="d-flex gap-3 justify-content-center flex-wrap">
-<button class="btn-gold">Explore Collection</button>
-<button class="btn-outline-light-custom">New Arrivals</button>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Slide 2 -->
-<div class="carousel-item">
-<div class="carousel-slide slide-2">
-<div class="slide-texture"></div>
-<div class="carousel-caption-custom">
-<span class="eyebrow"></span>
-<h2>Your Favorite sweet treats from all over Japan</h2>
-<p></p>
-<div class="d-flex gap-3 justify-content-center flex-wrap">
-<button class="btn-gold">Shop Sweets</button>
-<button class="btn-outline-light-custom">Learn More</button>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Slide 3 -->
-<div class="carousel-item">
-<div class="carousel-slide slide-3">
-<div class="slide-texture"></div>
-<div class="carousel-caption-custom">
-<span class="eyebrow"></span>
-<h2>Most Popular Souvenirs from Japan</h2>
-<p></p>
-<div class="d-flex gap-3 justify-content-center flex-wrap">
-<button class="btn-gold">View Drop</button>
-<button class="btn-outline-light-custom">Subscribe</button>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-<span class="carousel-control-prev-icon"></span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-<span class="carousel-control-next-icon"></span>
-</button>
-
-
-</div>
 
 <!-- ════════════════════════════════════════
 FEATURE STRIP
@@ -632,7 +595,7 @@ FEATURE STRIP
 </div>
 <div class="col">
 <div class="item">
-<i class="bi bi-truck"></i> Same Day Shipping
+    <i class="bi bi-truck"></i> Same Day Shipping
 </div>
 </div>
 </div>
@@ -640,88 +603,79 @@ FEATURE STRIP
 </div>
 
 <!-- ════════════════════════════════════════
-MAIN CONTAINER — 4 CARDS
+MAIN CONTAINER
 ════════════════════════════════════════ -->
 
-<section class="card-section">
+<section class="card-section contact">
 <div class="container">
-
 
 <!-- Section Header -->
 <div class="text-center mb-5">
-<p class="section-eyebrow">New Arrivals</p>
-<h2 class="section-title mt-2">Get them first!</h2>
+<p class="section-eyebrow">Toki.Pop</p>
+<h2 class="section-title mt-2">Contact us</h2>
 <div class="divider-gold mx-auto"></div>
 <p class="mt-3 text-muted mx-auto" style="max-width:540px; font-size:.95rem; line-height:1.8;">
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque sed accusantium esse rem ut! Necessitatibus hic debitis velit officiis perspiciatis?
+Questions about an order, a product, or working together? Send a note below — we typically reply within one business day.
 </p>
 </div>
 
-<!-- Card Row -->
-<div class="row g-4">
-
-<!-- Card 1 -->
-<div class="col-12 col-sm-6 col-xl-3">
-<div class="feature-card">
-<div class="card-img-wrap">
-<img src="images/pexels-rafaalem-17143531.jpg" alt="Living"/>
-<span class="card-badge">Just Arrived</span>
+<div class="row justify-content-center">
+<div class="col-lg-8 col-xl-7">
+<div class="contact-form-card p-4 p-md-5">
+<form id="contactForm" class="needs-validation" novalidate>
+<div class="row g-3">
+<div class="col-md-6">
+<label class="form-label" for="contactName">Name</label>
+<input type="text" class="form-control" id="contactName" name="name" required autocomplete="name"
+minlength="2" maxlength="120" placeholder="Your name"/>
+<div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
 </div>
-<div class="card-body">
-<h5 class="card-title">T-Shirts</h5>
-<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, iusto?</p>
-<button class="btn-ink">Explore</button>
+<div class="col-md-6">
+<label class="form-label" for="contactEmail">Email</label>
+<input type="email" class="form-control" id="contactEmail" name="email" required autocomplete="email"
+placeholder="you@example.com"/>
+<div class="invalid-feedback">Please enter a valid email address.</div>
 </div>
+<div class="col-12">
+<label class="form-label" for="contactTopic">Topic</label>
+<select class="form-select" id="contactTopic" name="topic" required>
+<option value="" selected disabled>Choose a topic</option>
+<option value="order">Order &amp; shipping</option>
+<option value="product">Product question</option>
+<option value="returns">Returns &amp; exchanges</option>
+<option value="wholesale">Wholesale / partnership</option>
+<option value="other">Something else</option>
+</select>
+<div class="invalid-feedback">Please select a topic.</div>
 </div>
+<div class="col-12">
+<label class="form-label" for="contactMessage">Message</label>
+<textarea class="form-control" id="contactMessage" name="message" required minlength="10" maxlength="2000"
+placeholder="How can we help?"></textarea>
+<div class="d-flex justify-content-between align-items-baseline flex-wrap gap-1 mt-1">
+<small class="text-muted" style="font-size:.8rem;">Minimum 10 characters.</small>
+<small class="text-muted" style="font-size:.8rem;"><span id="messageCharCount">0</span> / 2000</small>
 </div>
-
-<!-- Card 2 -->
-<div class="col-12 col-sm-6 col-xl-3">
-<div class="feature-card">
-<div class="card-img-wrap">
-<img src="images/pexels-airamdphoto-30697934.jpg" alt="Time"/>
-<span class="card-badge">New</span>
+<div class="invalid-feedback">Please write a message (at least 10 characters).</div>
 </div>
-<div class="card-body">
-<h5 class="card-title">Sweets</h5>
-<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore?</p>
-<button class="btn-ink">Explore</button>
-</div>
-</div>
-</div>
-
-<!-- Card 3 -->
-<div class="col-12 col-sm-6 col-xl-3">
-<div class="feature-card">
-<div class="card-img-wrap">
-<img src="images/pexels-huuhuynh-17995331.jpg" alt="Wardrobe"/>
-<span class="card-badge">Seasonal</span>
-</div>
-<div class="card-body">
-<h5 class="card-title">Favorites</h5>
-<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, totam?</p>
-<button class="btn-ink">Explore</button>
-</div>
+<div class="col-12">
+<div id="contactFormSuccess" class="alert d-none py-3 mb-0" role="status" aria-live="polite">
+<i class="bi bi-check-circle-fill me-2" style="color:var(--rust);"></i>
+Thanks — your message is ready to send. Connect this form to your email service or backend when you are ready to go live.
 </div>
 </div>
-
-<!-- Card 4 -->
-<div class="col-12 col-sm-6 col-xl-3">
-<div class="feature-card">
-<div class="card-img-wrap">
-<img src="images/pexels-nguyendesigner-16075337.jpg" alt="Library"/>
-<span class="card-badge">Editor's Pick</span>
+<div class="col-12 pt-1">
+<button type="submit" class="btn btn-ink px-4 py-2" id="contactSubmitBtn">
+<span class="submit-label">Send message</span>
+<span class="submit-spinner d-none spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+</button>
 </div>
-<div class="card-body">
-<h5 class="card-title">Our Choice</h5>
-<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, provident?</p>
-<button class="btn-ink">Explore</button>
+</div>
+</form>
 </div>
 </div>
 </div>
 
-</div><!-- /row -->
-</div><!-- /container -->
 
 
 </section>
@@ -758,7 +712,7 @@ FOOTER
 <li><a href="#">Sale</a></li>
 </ul>
 </div>
-
+    
 <div class="col-6 col-md-2">
 <h6>Company</h6>
 <ul>
@@ -774,11 +728,11 @@ FOOTER
 <div class="col-12 col-md-4">
 <h6>Newsletter</h6>
 <p style="font-size:.88rem; line-height:1.7; margin-bottom:1rem;">
-Stay up to date with new releases.
+Stay up to date with new release!
 </p>
-<div class="input-group" style="border:1px solid rgba(255,255,255,.15); border-radius:2px; overflow:hidden;">
+<div class="input-group" style="border:1px solid rgba(42, 3, 40, 0.15); border-radius:2px; overflow:hidden;">
 <input type="email" class="form-control bg-transparent border-0 text-white shadow-none"
-placeholder="your@email.com" style="font-size:.85rem; color:rgba(255,255,255,.6);"/>
+placeholder="your@email.com" style="font-size:.85rem; color:white;"/>
 <button class="btn-gold px-3" style="border:none; border-radius:0; font-size:.75rem;">Subscribe</button>
 </div>
 </div>
@@ -859,6 +813,50 @@ if (inst) inst.hide();
 }
 });
 }
+
+// Contact form: validation, submit feedback, message length
+(function () {
+const form = document.getElementById('contactForm');
+if (!form) return;
+const message = document.getElementById('contactMessage');
+const countEl = document.getElementById('messageCharCount');
+const successEl = document.getElementById('contactFormSuccess');
+const submitBtn = document.getElementById('contactSubmitBtn');
+const submitLabel = submitBtn.querySelector('.submit-label');
+const submitSpinner = submitBtn.querySelector('.submit-spinner');
+
+function updateCount() {
+if (!message || !countEl) return;
+countEl.textContent = String(message.value.length);
+}
+if (message) {
+message.addEventListener('input', updateCount);
+updateCount();
+}
+
+form.addEventListener('submit', function (e) {
+e.preventDefault();
+e.stopPropagation();
+form.classList.add('was-validated');
+if (!form.checkValidity()) return;
+
+successEl.classList.add('d-none');
+submitBtn.disabled = true;
+submitLabel.textContent = 'Sending…';
+submitSpinner.classList.remove('d-none');
+
+window.setTimeout(function () {
+submitSpinner.classList.add('d-none');
+submitLabel.textContent = 'Send message';
+submitBtn.disabled = false;
+form.reset();
+form.classList.remove('was-validated');
+updateCount();
+successEl.classList.remove('d-none');
+successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}, 800);
+});
+})();
 </script>
 
 </body>
